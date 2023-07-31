@@ -13,8 +13,7 @@
 		3DBCD87B26F198EF00522E3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DBCD87926F198EF00522E3B /* Main.storyboard */; };
 		3DBCD87D26F198F300522E3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBCD87C26F198F300522E3B /* Assets.xcassets */; };
 		3DBCD88026F198F300522E3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DBCD87E26F198F300522E3B /* LaunchScreen.storyboard */; };
-		81DB23702A721D5C00835BB2 /* WWFloatingViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 81DB236F2A721D5C00835BB2 /* WWFloatingViewController */; };
-		81DB23732A7237EE00835BB2 /* WWFloatingViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 81DB23722A7237EE00835BB2 /* WWFloatingViewController */; };
+		810298A62A775E0D0068EE8A /* WWFloatingViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 810298A52A775E0D0068EE8A /* WWFloatingViewController */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +32,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DAC9C1927016E78006663C2 /* WWPrint in Frameworks */,
-				81DB23732A7237EE00835BB2 /* WWFloatingViewController in Frameworks */,
-				81DB23702A721D5C00835BB2 /* WWFloatingViewController in Frameworks */,
+				810298A62A775E0D0068EE8A /* WWFloatingViewController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +42,7 @@
 		3DBCD86726F198EF00522E3B = {
 			isa = PBXGroup;
 			children = (
+				811F941C2A77565400DEADA6 /* Packages */,
 				3DBCD87226F198EF00522E3B /* Example */,
 				3DBCD87126F198EF00522E3B /* Products */,
 				819344B62A720E4D009B23C4 /* Frameworks */,
@@ -103,6 +102,13 @@
 			name = Setting;
 			sourceTree = "<group>";
 		};
+		811F941C2A77565400DEADA6 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		819344B62A720E4D009B23C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,8 +134,7 @@
 			name = Example;
 			packageProductDependencies = (
 				3DAC9C1827016E78006663C2 /* WWPrint */,
-				81DB236F2A721D5C00835BB2 /* WWFloatingViewController */,
-				81DB23722A7237EE00835BB2 /* WWFloatingViewController */,
+				810298A52A775E0D0068EE8A /* WWFloatingViewController */,
 			);
 			productName = Example;
 			productReference = 3DBCD87026F198EF00522E3B /* Example.app */;
@@ -160,7 +165,7 @@
 			mainGroup = 3DBCD86726F198EF00522E3B;
 			packageReferences = (
 				3DAC9C1727016E78006663C2 /* XCRemoteSwiftPackageReference "WWPrint" */,
-				81DB23712A7237EE00835BB2 /* XCRemoteSwiftPackageReference "WWFloatingView" */,
+				810298A42A775E0D0068EE8A /* XCRemoteSwiftPackageReference "WWFloatingView" */,
 			);
 			productRefGroup = 3DBCD87126F198EF00522E3B /* Products */;
 			projectDirPath = "";
@@ -404,7 +409,7 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		81DB23712A7237EE00835BB2 /* XCRemoteSwiftPackageReference "WWFloatingView" */ = {
+		810298A42A775E0D0068EE8A /* XCRemoteSwiftPackageReference "WWFloatingView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/William-Weng/WWFloatingView.git";
 			requirement = {
@@ -420,13 +425,9 @@
 			package = 3DAC9C1727016E78006663C2 /* XCRemoteSwiftPackageReference "WWPrint" */;
 			productName = WWPrint;
 		};
-		81DB236F2A721D5C00835BB2 /* WWFloatingViewController */ = {
+		810298A52A775E0D0068EE8A /* WWFloatingViewController */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = WWFloatingViewController;
-		};
-		81DB23722A7237EE00835BB2 /* WWFloatingViewController */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 81DB23712A7237EE00835BB2 /* XCRemoteSwiftPackageReference "WWFloatingView" */;
+			package = 810298A42A775E0D0068EE8A /* XCRemoteSwiftPackageReference "WWFloatingView" */;
 			productName = WWFloatingViewController;
 		};
 /* End XCSwiftPackageProductDependency section */

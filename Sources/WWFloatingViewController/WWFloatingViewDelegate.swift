@@ -29,6 +29,11 @@ public protocol WWFloatingViewDelegate: AnyObject {
     ///   - animatingPosition: 滑動的百分比
     func didAppear(_ viewController: WWFloatingViewController, animatingPosition: UIViewAnimatingPosition)
     
+    /// 將要結束 - 快不見了
+    /// - Parameters:
+    ///   - viewController: WWFloatingViewController
+    func willDisAppear(_ viewController: WWFloatingViewController)
+    
     /// 顯示結束 - 不見了
     /// - Parameters:
     ///   - viewController: Self

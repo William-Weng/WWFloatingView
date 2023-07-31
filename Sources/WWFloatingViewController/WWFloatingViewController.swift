@@ -18,12 +18,14 @@ open class WWFloatingViewController: UIViewController {
     public var currentView: UIView?
     public weak var myDelegate: WWFloatingViewDelegate?
     
+    private var isPanning = false
     private var animationDuration: TimeInterval = 0.5
     private var floatingViewCornerRadius: CGFloat = 8.0
     private var completePercent: CGFloat = 0.5
     private var multiplier: CGFloat = 0.5
     private var propertyAnimator: UIViewPropertyAnimator!
     
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) { super.touchesBegan(touches, with: event); dismissActionRule(touches, with: event) }
     open override func viewDidLoad() { super.viewDidLoad(); initSetting() }
     open override func viewWillAppear(_ animated: Bool) { super.viewWillAppear(animated); showFloatingView(duration: animationDuration) }
     
@@ -51,12 +53,20 @@ public extension WWFloatingViewController {
         self._transparent(backgroundColor)
     }
     
-    /// 退出ViewController
+    /// 點擊View時dismiss的使用規則 => 點到View + 沒有滑動
     /// - Parameters:
-    ///   - animated: 是否使用動畫
-    ///   - completion: () -> Void)?
-    func dismissViewController(animated: Bool, completion: (() -> Void)? = nil) {
-        dismiss(animated: animated, completion: completion)
+    ///   - touches: Set<UITouch>
+    ///   - event: UIEvent?
+    func dismissActionRule(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        guard let touchedView = touches.first?.view,
+              touchedView == view,
+              !isPanning
+        else {
+            return
+        }
+        
+        dismissViewController()
     }
 }
 
@@ -66,6 +76,8 @@ private extension WWFloatingViewController {
     /// [拖曳時的相關動作的手勢動畫](https://ithelp.ithome.com.tw/articles/10205703?sc=iThelpR)
     /// - Parameter recognizer: UIPanGestureRecognizer
     @objc private func floatingViewAnimation(_ recognizer: UIPanGestureRecognizer) {
+        
+        isPanning = true
         
         switch recognizer.state {
         case .began: floatingViewPanBegan(recognizer, duration: animationDuration)
@@ -112,6 +124,21 @@ private extension WWFloatingViewController {
     /// floatingView外型的圓角設定
     func floatingViewSetting(cornerRadius: CGFloat) { floatingView.layer._maskedCorners(radius: cornerRadius, corners: [.layerMinXMinYCorner, .layerMaxXMinYCorner]) }
     
+    /// 退出ViewController
+    /// - Parameters:
+    ///   - animated: 是否使用動畫
+    func dismissViewController(animated: Bool = false) {
+        
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: animationDuration, delay: 0, options: [.curveEaseOut], animations: {
+            self.floatingView.transform = CGAffineTransform(translationX: 0, y: self.floatingView.bounds.height)
+            self.myDelegate?.willDisAppear(self)
+        }, completion: { (animatingPosition) in
+            self.dismiss(animated: animated) {
+                self.myDelegate?.didDisAppear(self, animatingPosition: animatingPosition)
+            }
+        })
+    }
+    
     /// 顯示FloatingView
     /// - 包含動畫
     func showFloatingView(duration: TimeInterval) {
@@ -143,8 +170,7 @@ private extension WWFloatingViewController {
         let fractionComplete = translation.y / floatingView.bounds.height
         
         propertyAnimator.fractionComplete = fractionComplete
-        
-        self.myDelegate?.appearing(self, fractionComplete: propertyAnimator.fractionComplete)
+        myDelegate?.appearing(self, fractionComplete: propertyAnimator.fractionComplete)
     }
     
     /// 拖曳結束時
@@ -155,12 +181,15 @@ private extension WWFloatingViewController {
         
         defer {
             propertyAnimator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
-            self.myDelegate?.didAppear(self, animatingPosition: .end)
+            self.isPanning = false
         }
         
-        guard propertyAnimator.fractionComplete > completePercent else { propertyAnimator.isReversed = true; return }
+        guard propertyAnimator.fractionComplete > completePercent else { propertyAnimator.isReversed = true; myDelegate?.appearing(self, fractionComplete: propertyAnimator.fractionComplete); return }
         
         propertyAnimator.addCompletion { (animatingPosition) in
+            
+            self.myDelegate?.willDisAppear(self)
+            
             self.dismiss(animated: true, completion: {
                 self.myDelegate?.didDisAppear(self, animatingPosition: animatingPosition)
             })

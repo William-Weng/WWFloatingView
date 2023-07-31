@@ -58,6 +58,10 @@ extension ViewController: WWFloatingViewDelegate {
         wwPrint("animatingPosition => \(animatingPosition)")
     }
     
+    func willDisAppear(_ viewController: WWFloatingViewController) {
+        wwPrint("willDisAppear")
+    }
+    
     func didDisAppear(_ viewController: WWFloatingViewController, animatingPosition: UIViewAnimatingPosition) {
         wwPrint("animatingPosition => \(animatingPosition)")
     }
