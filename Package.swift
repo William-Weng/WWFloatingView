@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "WWFloatingViewController",
     platforms: [
-        .iOS(.v13)
+        .iOS(.v14)
     ],
     products: [
         .library(name: "WWFloatingViewController", targets: ["WWFloatingViewController"]),
