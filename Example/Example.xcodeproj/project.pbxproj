@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3DAC9C1927016E78006663C2 /* WWPrint in Frameworks */ = {isa = PBXBuildFile; productRef = 3DAC9C1827016E78006663C2 /* WWPrint */; };
 		3DBCD87426F198EF00522E3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCD87326F198EF00522E3B /* AppDelegate.swift */; };
 		3DBCD87826F198EF00522E3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCD87726F198EF00522E3B /* ViewController.swift */; };
 		3DBCD87B26F198EF00522E3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DBCD87926F198EF00522E3B /* Main.storyboard */; };
 		3DBCD87D26F198F300522E3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBCD87C26F198F300522E3B /* Assets.xcassets */; };
 		3DBCD88026F198F300522E3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DBCD87E26F198F300522E3B /* LaunchScreen.storyboard */; };
-		810298A62A775E0D0068EE8A /* WWFloatingViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 810298A52A775E0D0068EE8A /* WWFloatingViewController */; };
+		64C319D02AB59B5C00BCD88E /* WWFloatingViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 64C319CF2AB59B5C00BCD88E /* WWFloatingViewController */; };
+		64F4D90A2AB59FBB00A4C73F /* WWFloatingViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 64F4D9092AB59FBB00A4C73F /* WWFloatingViewController */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +31,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DAC9C1927016E78006663C2 /* WWPrint in Frameworks */,
-				810298A62A775E0D0068EE8A /* WWFloatingViewController in Frameworks */,
+				64C319D02AB59B5C00BCD88E /* WWFloatingViewController in Frameworks */,
+				64F4D90A2AB59FBB00A4C73F /* WWFloatingViewController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,7 +42,6 @@
 		3DBCD86726F198EF00522E3B = {
 			isa = PBXGroup;
 			children = (
-				811F941C2A77565400DEADA6 /* Packages */,
 				3DBCD87226F198EF00522E3B /* Example */,
 				3DBCD87126F198EF00522E3B /* Products */,
 				819344B62A720E4D009B23C4 /* Frameworks */,
@@ -102,13 +101,6 @@
 			name = Setting;
 			sourceTree = "<group>";
 		};
-		811F941C2A77565400DEADA6 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		819344B62A720E4D009B23C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,8 +125,8 @@
 			);
 			name = Example;
 			packageProductDependencies = (
-				3DAC9C1827016E78006663C2 /* WWPrint */,
-				810298A52A775E0D0068EE8A /* WWFloatingViewController */,
+				64C319CF2AB59B5C00BCD88E /* WWFloatingViewController */,
+				64F4D9092AB59FBB00A4C73F /* WWFloatingViewController */,
 			);
 			productName = Example;
 			productReference = 3DBCD87026F198EF00522E3B /* Example.app */;
@@ -164,8 +156,7 @@
 			);
 			mainGroup = 3DBCD86726F198EF00522E3B;
 			packageReferences = (
-				3DAC9C1727016E78006663C2 /* XCRemoteSwiftPackageReference "WWPrint" */,
-				810298A42A775E0D0068EE8A /* XCRemoteSwiftPackageReference "WWFloatingView" */,
+				64F4D9082AB59FBB00A4C73F /* XCRemoteSwiftPackageReference "WWFloatingView" */,
 			);
 			productRefGroup = 3DBCD87126F198EF00522E3B /* Products */;
 			projectDirPath = "";
@@ -345,7 +336,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4Q5CYDAG3B;
 				INFOPLIST_FILE = Example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -365,7 +356,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4Q5CYDAG3B;
 				INFOPLIST_FILE = Example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -401,15 +392,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3DAC9C1727016E78006663C2 /* XCRemoteSwiftPackageReference "WWPrint" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/William-Weng/WWPrint";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		810298A42A775E0D0068EE8A /* XCRemoteSwiftPackageReference "WWFloatingView" */ = {
+		64F4D9082AB59FBB00A4C73F /* XCRemoteSwiftPackageReference "WWFloatingView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/William-Weng/WWFloatingView.git";
 			requirement = {
@@ -420,14 +403,13 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3DAC9C1827016E78006663C2 /* WWPrint */ = {
+		64C319CF2AB59B5C00BCD88E /* WWFloatingViewController */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3DAC9C1727016E78006663C2 /* XCRemoteSwiftPackageReference "WWPrint" */;
-			productName = WWPrint;
+			productName = WWFloatingViewController;
 		};
-		810298A52A775E0D0068EE8A /* WWFloatingViewController */ = {
+		64F4D9092AB59FBB00A4C73F /* WWFloatingViewController */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 810298A42A775E0D0068EE8A /* XCRemoteSwiftPackageReference "WWFloatingView" */;
+			package = 64F4D9082AB59FBB00A4C73F /* XCRemoteSwiftPackageReference "WWFloatingView" */;
 			productName = WWFloatingViewController;
 		};
 /* End XCSwiftPackageProductDependency section */

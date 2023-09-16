@@ -1,6 +1,6 @@
 # WWFloatingView
 
-[![Swift-5.8](https://img.shields.io/badge/Swift-5.8-orange.svg?style=flat)](https://developer.apple.com/swift/) [![iOS-13.0](https://img.shields.io/badge/iOS-13.0-pink.svg?style=flat)](https://developer.apple.com/swift/) ![TAG](https://img.shields.io/github/v/tag/William-Weng/WWFloatingView) [![Swift Package Manager-SUCCESS](https://img.shields.io/badge/Swift_Package_Manager-SUCCESS-blue.svg?style=flat)](https://developer.apple.com/swift/) [![LICENSE](https://img.shields.io/badge/LICENSE-MIT-yellow.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift-5.7](https://img.shields.io/badge/Swift-5.8-orange.svg?style=flat)](https://developer.apple.com/swift/) [![iOS-14.0](https://img.shields.io/badge/iOS-13.0-pink.svg?style=flat)](https://developer.apple.com/swift/) ![TAG](https://img.shields.io/github/v/tag/William-Weng/WWFloatingView) [![Swift Package Manager-SUCCESS](https://img.shields.io/badge/Swift_Package_Manager-SUCCESS-blue.svg?style=flat)](https://developer.apple.com/swift/) [![LICENSE](https://img.shields.io/badge/LICENSE-MIT-yellow.svg?style=flat)](https://developer.apple.com/swift/)
 
 A simple hover and drag window.
 
@@ -24,22 +24,30 @@ import WWFloatingViewController
 
 final class ViewController: UIViewController {
     
+    private lazy var floatingViewController = WWFloatingView.shared.maker()
+    private lazy var currentView = UIImageView(image: UIImage(systemName: "scribble.variable"))
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func test(_ sender: UIButton) {
-
-        let floatingViewController = WWFloatingView.shared.maker()
-        let currentView = UIImageView(image: UIImage(systemName: "scribble.variable"))
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(Self.dismissFloatingViewController(_:)))
         
         currentView.contentMode = .scaleAspectFit
         currentView.backgroundColor = .systemPink.withAlphaComponent(0.5)
+        currentView.isUserInteractionEnabled = true
+        currentView.addGestureRecognizer(tap)
 
         floatingViewController.myDelegate = self
         floatingViewController.configure(backgroundColor: .systemTeal.withAlphaComponent(0.5), multiplier: 0.8, completePercent: 0.5, currentView: currentView)
         
         present(floatingViewController, animated: true)
+    }
+    
+    @objc func dismissFloatingViewController(_ recognizer: UITapGestureRecognizer) {
+        floatingViewController.dismissViewController()
     }
 }
 
@@ -61,11 +69,9 @@ extension ViewController: WWFloatingViewDelegate {
     func willDisAppear(_ viewController: WWFloatingViewController) {
         wwPrint("willDisAppear")
     }
-    
+
     func didDisAppear(_ viewController: WWFloatingViewController, animatingPosition: UIViewAnimatingPosition) {
         wwPrint("animatingPosition => \(animatingPosition)")
     }
 }
 ```
-
-

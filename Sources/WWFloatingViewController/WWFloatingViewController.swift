@@ -53,20 +53,19 @@ public extension WWFloatingViewController {
         self._transparent(backgroundColor)
     }
     
-    /// 點擊View時dismiss的使用規則 => 點到View + 沒有滑動
+    /// 退出ViewController
     /// - Parameters:
-    ///   - touches: Set<UITouch>
-    ///   - event: UIEvent?
-    func dismissActionRule(_ touches: Set<UITouch>, with event: UIEvent?) {
+    ///   - animated: 是否使用動畫
+    func dismissViewController(animated: Bool = false) {
         
-        guard let touchedView = touches.first?.view,
-              touchedView == view,
-              !isPanning
-        else {
-            return
-        }
-        
-        dismissViewController()
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: animationDuration, delay: 0, options: [.curveEaseOut], animations: {
+            self.floatingView.transform = CGAffineTransform(translationX: 0, y: self.floatingView.bounds.height)
+            self.myDelegate?.willDisAppear(self)
+        }, completion: { (animatingPosition) in
+            self.dismiss(animated: animated) {
+                self.myDelegate?.didDisAppear(self, animatingPosition: animatingPosition)
+            }
+        })
     }
 }
 
@@ -122,21 +121,8 @@ private extension WWFloatingViewController {
     }
     
     /// floatingView外型的圓角設定
-    func floatingViewSetting(cornerRadius: CGFloat) { floatingView.layer._maskedCorners(radius: cornerRadius, corners: [.layerMinXMinYCorner, .layerMaxXMinYCorner]) }
-    
-    /// 退出ViewController
-    /// - Parameters:
-    ///   - animated: 是否使用動畫
-    func dismissViewController(animated: Bool = false) {
-        
-        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: animationDuration, delay: 0, options: [.curveEaseOut], animations: {
-            self.floatingView.transform = CGAffineTransform(translationX: 0, y: self.floatingView.bounds.height)
-            self.myDelegate?.willDisAppear(self)
-        }, completion: { (animatingPosition) in
-            self.dismiss(animated: animated) {
-                self.myDelegate?.didDisAppear(self, animatingPosition: animatingPosition)
-            }
-        })
+    func floatingViewSetting(cornerRadius: CGFloat) {
+        floatingView.layer._maskedCorners(radius: cornerRadius, corners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
     }
     
     /// 顯示FloatingView
@@ -149,6 +135,22 @@ private extension WWFloatingViewController {
         }, completion: { (animatingPosition) in
             self.myDelegate?.didAppear(self, animatingPosition: animatingPosition)
         })
+    }
+    
+    /// 點擊View時dismiss的使用規則 => 點到View + 沒有滑動
+    /// - Parameters:
+    ///   - touches: Set<UITouch>
+    ///   - event: UIEvent?
+    func dismissActionRule(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        guard let touchedView = touches.first?.view,
+              touchedView == view,
+              !isPanning
+        else {
+            return
+        }
+        
+        dismissViewController()
     }
     
     /// 拖曳開始
