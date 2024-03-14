@@ -2,7 +2,7 @@
 
 [![Swift-5.6](https://img.shields.io/badge/Swift-5.6-orange.svg?style=flat)](https://developer.apple.com/swift/) [![iOS-14.0](https://img.shields.io/badge/iOS-14.0-pink.svg?style=flat)](https://developer.apple.com/swift/) ![TAG](https://img.shields.io/github/v/tag/William-Weng/WWFloatingView) [![Swift Package Manager-SUCCESS](https://img.shields.io/badge/Swift_Package_Manager-SUCCESS-blue.svg?style=flat)](https://developer.apple.com/swift/) [![LICENSE](https://img.shields.io/badge/LICENSE-MIT-yellow.svg?style=flat)](https://developer.apple.com/swift/)
 
-## [Introduction - 簡介](https://swiftpackageindex.com/William-Weng)
+### [Introduction - 簡介](https://swiftpackageindex.com/William-Weng)
 - A simple hover and drag window.
 - 一個簡單的懸浮拖曳視窗.
 
@@ -12,9 +12,24 @@
 
 ```bash
 dependencies: [
-    .package(url: "https://github.com/William-Weng/WWFloatingView.git", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/William-Weng/WWFloatingView.git", .upToNextMajor(from: "1.2.0"))
 ]
 ```
+
+### Function - 可用函式
+|函式|功能|
+|-|-|
+|configure(animationDuration:cornerRadius:backgroundColor:multiplier:completePercent:currentView:)|參數設定|
+|dismissViewController(animated:)|退出ViewController|
+
+### WWFloatingViewDelegate
+|函式|功能|
+|-|-|
+|willAppear(_:completePercent:)|將要顯示 - 沒出現|
+|appearing(_:fractionComplete:)|出現中|
+|didAppear(_:animatingPosition:)|顯示完成 - 出現了|
+|willDisAppear(_:)|將要結束 - 快不見了|
+|didDisAppear(_:animatingPosition:)|顯示結束 - 不見了|
 
 ### Example
 ```swift

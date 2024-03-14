@@ -15,7 +15,7 @@ let package = Package(
         .package(url: "https://github.com/William-Weng/WWPrint.git", from: "1.3.0"),
     ],
     targets: [
-        .target(name: "WWFloatingViewController", dependencies: ["WWPrint"]),
+        .target(name: "WWFloatingViewController", dependencies: ["WWPrint"], resources: [.copy("Privacy")]),
     ],
     swiftLanguageVersions: [
         .v5
